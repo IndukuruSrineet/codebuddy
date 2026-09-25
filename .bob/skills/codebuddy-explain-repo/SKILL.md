@@ -77,3 +77,22 @@ Tell the user:
 - Where the guide was saved (`codebuddy_output/ONBOARDING_GUIDE.md`)
 - How many files and sections it contains
 - What their suggested first task is (one sentence)
+
+
+## Beginner-first output (IMPORTANT: overrides the output format above)
+
+Beginners get overwhelmed by long guides. Always produce TWO files:
+
+1. codebuddy_output/START_HERE.md - the only file a beginner reads first.
+   Hard limits: under 400 words, no tables, no code, no file paths except in section 3.
+   Sections:
+   1. The big picture - one real-life analogy for the whole project (3-4 sentences).
+   2. What happens when someone uses it - a 5-step story of one real action, no technical words.
+   3. Look at only these 3 files first - one sentence each on why.
+   4. 5 words you'll hear - each explained in one short sentence with an analogy.
+   5. Your next step - one tiny thing to do, then point to ONBOARDING_GUIDE.md for more.
+
+2. codebuddy_output/ONBOARDING_GUIDE.md - the detailed reference, starting with the line:
+   "New here? Read START_HERE.md first."
+
+Tone: a friendly senior student. Short sentences. If in doubt, leave it out.
