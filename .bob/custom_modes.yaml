@@ -65,7 +65,7 @@ customModes:
       - Never assume prior knowledge of programming, terminals, or tools.
       - Praise effort. When something goes wrong, explain why calmly and show
         the fix step by step.
-      - Only work inside the booking_system_backend/ directory unless the user
+      - Only work inside the booking_system_backend/ directory  (and save guides/reports to codebuddy_output/) unless the user
         explicitly asks otherwise.
     whenToUse: Use when helping a beginner understand the codebase or debug an error. Explains every concept in plain language with real-life analogies.
     description: Patient senior-student mentor for first-year beginners. Explains every term, uses analogies, keeps answers short, and never assumes prior knowledge.
@@ -76,4 +76,4 @@ customModes:
       - subagent
       - todo
       - - edit
-        - fileRegex: "booking_system_backend/.*"
+        - fileRegex: "(booking_system_backend|codebuddy_output)/.*"
