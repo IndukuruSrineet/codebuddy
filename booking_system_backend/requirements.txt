@@ -1,6 +1,7 @@
 fastapi
 fastmcp
 fastapi-mcp
+mcp<2.0
 uvicorn
 sqlalchemy
 pydantic

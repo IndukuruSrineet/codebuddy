@@ -869,3 +869,43 @@ class TestFlightsEndpointFiltering:
         assert response.status_code == 200
         data = response.json()
         assert len(data) == 2
+
+
+# ==================== Regression: mcp version compatibility ====================
+
+class TestMcpServerInit:
+    """Regression test for TypeError: Server.__init__() takes 2 positional arguments but 3 were given.
+
+    When the `mcp` library is version 2.x, FastApiMCP(app) crashes immediately
+    because it calls Server(name, description) with two positional arguments,
+    but mcp 2.x only accepts one positional argument (name).
+    Pinning mcp<2.0 in requirements.txt fixes this.
+    This test guards against that version being re-introduced.
+    """
+
+    def test_fastapi_mcp_server_initialises_without_error(self):
+        """Importing and using FastApiMCP(app) must NOT raise a TypeError.
+
+        If mcp>=2.0 is ever installed, FastApiMCP.__init__ will crash with:
+          TypeError: Server.__init__() takes 2 positional arguments but 3 were given
+        This test catches that breakage early.
+        """
+        import mcp
+        import sys
+        from pathlib import Path
+
+        sys.path.insert(0, str(Path(__file__).parent.parent))
+        import importlib
+        import server as _server  # importing server triggers FastApiMCP(app)
+
+        # If we get here without an exception, the mcp version is compatible.
+        assert hasattr(_server, "mcp"), "server.mcp object should exist after import"
+
+        # Confirm we are on a compatible (1.x) mcp version
+        from importlib.metadata import version as pkg_version
+        mcp_version = pkg_version("mcp")
+        major = int(mcp_version.split(".")[0])
+        assert major < 2, (
+            f"mcp {mcp_version} is not compatible with fastapi-mcp 0.4.0. "
+            "Pin mcp<2.0 in requirements.txt."
+        )

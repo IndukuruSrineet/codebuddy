@@ -1,4 +1,70 @@
-# Galaxium Travels — Interplanetary Booking System
+# CodeBuddy — IBM Bob 2.0 Hackathon Project
+
+> Built by **Srineet Reddy Indukuru**, first-year B.Tech CSE student, for the **IBM Bob 2.0 Hackathon**.
+> Bob session evidence is in `bob_sessions/`.
+
+## What is CodeBuddy?
+
+CodeBuddy is a custom **IBM Bob mode** plus **two skills** that help first-year students understand an unfamiliar codebase and fix errors in it — without getting lost or giving up.
+
+It lives entirely in the `.bob/` folder:
+
+| File / Folder | Purpose |
+|---|---|
+| `.bob/custom_modes.yaml` | Defines the CodeBuddy mode |
+| `.bob/skills/codebuddy-explain-repo` | Explains an unknown codebase in plain language |
+| `.bob/skills/codebuddy-fix-error` | Diagnoses and fixes dependency/test errors simply |
+
+**Portable:** drop the `.bob/` folder into any project and CodeBuddy works there too.
+
+---
+
+## The Problem
+
+Beginners get handed a real codebase, see dozens of files and cryptic error messages, and give up.
+CodeBuddy exists to bridge that gap.
+
+---
+
+## Skills
+
+### 🗺️ Explain-Repo Skill
+
+Parallel subagents read the code and docs, then produce two beginner-first documents:
+
+- **`codebuddy_output/START_HERE.md`** — a one-page, story-first intro to the project
+- **`codebuddy_output/ONBOARDING_GUIDE.md`** — a detailed reference with a file map, real-world analogies, and a 24-term glossary
+
+> The first version of the output overwhelmed me as a beginner, so I redesigned it to put the story before the structure.
+
+### 🔧 Fix-Error Skill
+
+On a fresh setup, **35 tests errored** because of an unpinned dependency (`mcp 2.x` broke `fastapi-mcp`).
+CodeBuddy:
+
+1. Found the root cause automatically
+2. Explained it in plain English
+3. Fixed it with one line (`mcp<2.0` in `requirements.txt`)
+4. Added a regression test
+5. Got **73/73 tests passing**
+
+Full error report: `codebuddy_output/error_reports/`
+
+---
+
+## How to Use
+
+1. Open this project in **Bob IDE**
+2. Select the **CodeBuddy** mode from the mode switcher
+3. Then say one of:
+   - `"explain this repo"` → generates `START_HERE.md` and `ONBOARDING_GUIDE.md`
+   - Paste any error message → CodeBuddy explains the cause and fixes it
+
+---
+
+---
+
+# About the Sample Project: Galaxium Travels — Interplanetary Booking System
 
 A demo multi-service application for booking interplanetary space travel. Its purpose is to **showcase challenges agents face in a real enterprise-style codebase** — three polyglot services, cross-service workflows, a dual REST + MCP backend, and intentional architectural constraints that make it interesting to work with.
 
